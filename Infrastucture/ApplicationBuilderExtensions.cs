@@ -45,6 +45,8 @@
                 new Genre{ Name = "Idle"},
                 new Genre{ Name = "Racing"},
             });
+
+            data.SaveChanges();
         }
     }
 }

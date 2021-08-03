@@ -4,24 +4,34 @@
     using System.ComponentModel.DataAnnotations;
 
     using static DataConstants.Game;
+
     public class Game
     {
         public int Id { get; set; }
+
         [Required]
         [MaxLength(NameMaxLength)]
         public string Name { get; set; }
+
+        [Range(MinPrice,MaxPrice)]
         public decimal Price { get; set; }
+
         [Required]
         [MaxLength(DeveloperMaxLength)]
         public string Developer { get; set; }
+
         [Required]
         public string Description { get; set; }
+
+        [Range(MinReleaseYear,MaxReleaseYear)]
         public int ReleaseYear { get; set; }
 
         [Required]
         public string ImageUrl { get; set; }
 
-        public IEnumerable<Genre> Genre { get; set; } = new List<Genre>();
+        public int GenreId { get; set; }
+
+        public Genre Genre { get; set; }
 
         public IEnumerable<DownloadableContent> DownloadableContents { get; set; } = new List<DownloadableContent>();
     }

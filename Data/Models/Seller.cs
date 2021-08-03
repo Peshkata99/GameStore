@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using static DataConstants.Seller;
+
     public class Seller
     {
         public int Id { get; init; }
