@@ -20,6 +20,26 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder
+                .Entity<Game>()
+                .HasOne(g => g.Genre)
+                .WithMany(gr => gr.Games)
+                .HasForeignKey(g => g.GenreId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<DownloadableContent>()
+                .HasOne(dc => dc.Game)
+                .WithMany(c => c.DownloadableContents)
+                .HasForeignKey(dc => dc.GameId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Genre>()
+                .HasMany(gr => gr.Games)
+                .WithOne(g => g.Genre)
+                .HasForeignKey(g => g.GenreId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);
         }
