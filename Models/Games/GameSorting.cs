@@ -4,7 +4,7 @@
     {
         ReleaseDate = 0,
         Developer = 1,
-        Name = 2,
+        Genre = 2,
         AscendingPrice = 3,
         DescendingPrice = 4
     }

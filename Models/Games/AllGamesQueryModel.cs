@@ -7,9 +7,10 @@
     {
         public const int GamesPerPage = 6;
 
-        public string Name { get; set; }
-
         [Display(Name = "Search by text")]
+
+        public string Genre { get; set; }
+
         public string SearchTerm { get; set; }
 
         public GameSorting Sorting { get; set; }
@@ -17,8 +18,12 @@
         public int CurrentPage { get; set; } = 1;
 
         public int TotalGames { get; set; }
-        public IEnumerable<string> Names { get; set; }
+
+        
+        public IEnumerable<string> Genres { get; set; }
 
         public IEnumerable<GameListingViewModel> Games { get; set; }
+
+        
     }
 }

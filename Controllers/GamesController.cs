@@ -17,9 +17,9 @@
         {
             var gamesQuery = this.data.Games.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(query.Name))
+            if (!string.IsNullOrWhiteSpace(query.Genre))
             {
-                gamesQuery = gamesQuery.Where(c => c.Name == query.Name);
+                gamesQuery = gamesQuery.Where(g => g.Genre.Name == query.Genre);
             }
 
             if (!string.IsNullOrWhiteSpace(query.SearchTerm))
@@ -31,8 +31,8 @@
 
             gamesQuery = query.Sorting switch
             {
-                GameSorting.ReleaseDate => gamesQuery.OrderBy(g => g.ReleaseYear),
-                GameSorting.Name => gamesQuery.OrderBy(g => g.Name),
+                GameSorting.ReleaseDate => gamesQuery.OrderByDescending(g => g.ReleaseYear),
+                GameSorting.Genre => gamesQuery.OrderBy(g => g.Genre),
                 GameSorting.DescendingPrice => gamesQuery.OrderByDescending(g => g.Price),
                 GameSorting.AscendingPrice or _ => gamesQuery.OrderBy(g => g.Price)
             };
@@ -49,19 +49,18 @@
                     Price = g.Price,
                     ReleaseDate= g.ReleaseYear,
                     ImageUrl = g.ImageUrl,
-                    Genre = g.Genre.Name
                 })
                 .ToList();
 
-            var gameNames = this.data
-                .Games
+            var genreNames = this.data
+                .Genres
                 .Select(g => g.Name)
                 .Distinct()
                 .OrderBy(n => n)
                 .ToList();
 
             query.TotalGames = totalGames;
-            query.Names = gameNames;
+            query.Genres = genreNames;
             query.Games = games;
 
             return View(query);
