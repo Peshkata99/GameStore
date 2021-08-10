@@ -2,6 +2,7 @@ namespace GameStore
 {
     using GameStore.Data;
     using GameStore.Infrastructure;
+    using GameStore.Services.Games;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -31,6 +32,8 @@ namespace GameStore
             })
                 .AddEntityFrameworkStores<GameStoreDbContext>();
             services.AddControllersWithViews();
+
+            services.AddTransient<IGameService, GameService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

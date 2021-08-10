@@ -1,5 +1,6 @@
 ﻿namespace GameStore.Models.Games
 {
+    using GameStore.Services.Games;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -22,7 +23,7 @@
         
         public IEnumerable<string> Genres { get; set; }
 
-        public IEnumerable<GameListingViewModel> Games { get; set; }
+        public IEnumerable<GameServiceModel> Games { get; set; }
 
         
     }

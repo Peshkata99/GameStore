@@ -8,69 +8,39 @@
     using System.Collections.Generic;
     using System.Linq;
     using Microsoft.AspNetCore.Authorization;
+    using GameStore.Services.Games;
 
     public class GamesController : Controller
     {
+        private readonly IGameService games;
         private readonly GameStoreDbContext data;
 
-        public GamesController(GameStoreDbContext data) => this.data = data;
+        public GamesController(IGameService games,GameStoreDbContext data)
+        {
+            this.games = games;
+            this.data = data;
+        }
 
         public IActionResult All([FromQuery] AllGamesQueryModel query)
         {
-            var gamesQuery = this.data.Games.AsQueryable();
+            var queryResult = this.games.All(
+                query.Genre,
+                query.SearchTerm,
+                query.Sorting,
+                query.CurrentPage,
+                AllGamesQueryModel.GamesPerPage);
 
-            if (!string.IsNullOrWhiteSpace(query.Genre))
-            {
-                gamesQuery = gamesQuery.Where(g => g.Genre.Name == query.Genre);
-            }
+            var genreNames = this.games.AllGameGenres();
 
-            if (!string.IsNullOrWhiteSpace(query.SearchTerm))
-            {
-                gamesQuery = gamesQuery.Where(g =>
-                    (g.Name).ToLower().Contains(query.SearchTerm.ToLower()) ||
-                    g.Description.ToLower().Contains(query.SearchTerm.ToLower()));
-            }
-
-            gamesQuery = query.Sorting switch
-            {
-                GameSorting.ReleaseDate => gamesQuery.OrderByDescending(g => g.ReleaseYear),
-                GameSorting.Genre => gamesQuery.OrderBy(g => g.Genre),
-                GameSorting.DescendingPrice => gamesQuery.OrderByDescending(g => g.Price),
-                GameSorting.AscendingPrice or _ => gamesQuery.OrderBy(g => g.Price)
-            };
-
-            var totalGames = gamesQuery.Count();
-
-            var games = gamesQuery
-                .Skip((query.CurrentPage - 1) * AllGamesQueryModel.GamesPerPage)
-                .Take(AllGamesQueryModel.GamesPerPage)
-                .Select(g => new GameListingViewModel
-                {
-                    Id = g.Id,
-                    Name = g.Name,
-                    Price = g.Price,
-                    ReleaseDate= g.ReleaseYear,
-                    ImageUrl = g.ImageUrl,
-                })
-                .ToList();
-
-            var genreNames = this.data
-                .Genres
-                .Select(g => g.Name)
-                .Distinct()
-                .OrderBy(n => n)
-                .ToList();
-
-            query.TotalGames = totalGames;
             query.Genres = genreNames;
-            query.Games = games;
+            query.TotalGames = queryResult.TotalGames;
+            query.Games = queryResult.Games;
 
             return View(query);
         }
         [Authorize]
         public IActionResult Add() 
         {
-
             if (!this.UserIsSeller())
             {
                 return RedirectToAction(nameof(SellersController.Become), "Sellers");

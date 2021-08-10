@@ -1,6 +1,6 @@
-﻿namespace GameStore.Models.Games
+﻿namespace GameStore.Services.Games
 {
-    public class GameListingViewModel
+    public class GameServiceModel
     {
         public int Id { get; set; }
 
