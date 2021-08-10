@@ -1,6 +1,7 @@
 ﻿namespace GameStore.Data
 {
     using GameStore.Data.Models;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +29,13 @@
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
+                .Entity<Game>()
+                .HasOne(c => c.Seller)
+                .WithMany(s => s.Games)
+                .HasForeignKey(c => c.SellerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
                 .Entity<DownloadableContent>()
                 .HasOne(dc => dc.Game)
                 .WithMany(c => c.DownloadableContents)
@@ -39,6 +47,13 @@
                 .HasMany(gr => gr.Games)
                 .WithOne(g => g.Genre)
                 .HasForeignKey(g => g.GenreId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Seller>()
+                .HasOne<IdentityUser>()
+                .WithOne()
+                .HasForeignKey<Seller>(d => d.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);

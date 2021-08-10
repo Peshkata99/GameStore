@@ -33,6 +33,10 @@
 
         public Genre Genre { get; set; }
 
+        public int? SellerId { get; set; }
+
+        public Seller Seller { get; set; }
+
         public IEnumerable<DownloadableContent> DownloadableContents { get; set; } = new List<DownloadableContent>();
     }
 }

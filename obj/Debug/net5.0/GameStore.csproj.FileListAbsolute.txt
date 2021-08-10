@@ -393,3 +393,4 @@ C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Ga
 C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\GameStore.genruntimeconfig.cache
 C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Views\Games\Add.cshtml.g.cs
 C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Views\Games\All.cshtml.g.cs
+C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Views\Sellers\Become.cshtml.g.cs

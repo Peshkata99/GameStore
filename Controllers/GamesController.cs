@@ -3,9 +3,11 @@
     using GameStore.Data;
     using GameStore.Data.Models;
     using GameStore.Models.Games;
+    using GameStore.Infrastructure;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
     using System.Linq;
+    using Microsoft.AspNetCore.Authorization;
 
     public class GamesController : Controller
     {
@@ -65,13 +67,35 @@
 
             return View(query);
         }
-        public IActionResult Add() => View(new AddGameFormModel {
-            Genres = this.GetGameGenres()
-        });
+        [Authorize]
+        public IActionResult Add() 
+        {
+
+            if (!this.UserIsSeller())
+            {
+                return RedirectToAction(nameof(SellersController.Become), "Sellers");
+            }
+
+            return View(new AddGameFormModel
+            {
+                Genres = this.GetGameGenres()
+            });
+        }
 
         [HttpPost]
         public IActionResult Add(AddGameFormModel game)
         {
+            var sellerId = this.data
+                .Sellers
+                .Where(d => d.UserId == this.User.GetId())
+                .Select(d => d.Id)
+                .FirstOrDefault();
+
+            if (sellerId == 0)
+            {
+                return RedirectToAction(nameof(SellersController.Become), "Sellers");
+            }
+
             if (!this.data.Genres.Any(g => g.Id == game.GenreId))
             {
                 this.ModelState.AddModelError(nameof(game.GenreId), "Genre does not exist");
@@ -92,7 +116,8 @@
                 Developer = game.Developer,
                 ReleaseYear = game.ReleaseYear,
                 ImageUrl = game.ImageUrl,
-                GenreId = game.GenreId
+                GenreId = game.GenreId,
+                SellerId = sellerId
             };
 
             this.data.Games.Add(gameData);
@@ -100,6 +125,10 @@
 
             return RedirectToAction(nameof(All));
         }
+        private bool UserIsSeller()
+            => this.data
+                .Sellers
+                .Any(d => d.UserId == this.User.GetId());
 
         private IEnumerable<GameGenreViewModel> GetGameGenres()
             => this.data

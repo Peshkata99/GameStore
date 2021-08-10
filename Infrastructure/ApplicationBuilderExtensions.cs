@@ -1,4 +1,4 @@
-﻿namespace GameStore.Infrastucture
+﻿namespace GameStore.Infrastructure
 {
     using System.Linq;
     using GameStore.Data;

@@ -3,9 +3,8 @@
     public enum GameSorting
     {
         ReleaseDate = 0,
-        Developer = 1,
-        Genre = 2,
-        AscendingPrice = 3,
-        DescendingPrice = 4
+        Genre = 1,
+        AscendingPrice = 2,
+        DescendingPrice = 3
     }
 }
