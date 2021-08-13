@@ -4,7 +4,11 @@
     {
         public class User
         {
+            public const int UsernameMinLength = 3;
+            public const int UsernameMaxLength = 35;
 
+            public const int PasswordMinLength = 6;
+            public const int PasswordMaxLength = 100;
         }
 
         public class Game

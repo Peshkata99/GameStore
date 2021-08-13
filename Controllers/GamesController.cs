@@ -1,11 +1,11 @@
 ﻿namespace GameStore.Controllers
 {
-    using GameStore.Models.Games;
     using GameStore.Infrastructure;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Authorization;
+    using GameStore.Models.Games;
     using GameStore.Services.Games;
     using GameStore.Services.Sellers;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
 
     public class GamesController : Controller
     {
@@ -99,14 +99,14 @@
         {
             var userId = this.User.Id();
 
-            if (!this.sellers.IsSeller(userId))
+            if (!this.sellers.IsSeller(userId) && !User.IsAdmin())
             {
                 return RedirectToAction(nameof(SellersController.Become), "Sellers");
             }
 
             var game = this.games.Details(id);
 
-            if (game.UserId != userId)
+            if (game.UserId != userId && !User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -121,14 +121,14 @@
         {
             var userId = this.User.Id();
 
-            if (!this.sellers.IsSeller(userId))
+            if (!this.sellers.IsSeller(userId) && !User.IsAdmin())
             {
                 return RedirectToAction(nameof(SellersController.Become), "Sellers");
             }
 
             var game = this.games.Details(id);
 
-            if(game.UserId != userId)
+            if(game.UserId != userId && !User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -151,7 +151,7 @@
         {
             var sellerId = this.sellers.IdByUser(this.User.Id());
 
-            if(sellerId == 0)
+            if(sellerId == 0 && !User.IsAdmin())
             {
                 return RedirectToAction(nameof(SellersController.Become), "Sellers");
             }
@@ -168,7 +168,7 @@
                 return View(game);
             }
 
-            if (!this.games.OwnedBySeller(id, sellerId))
+            if (!this.games.OwnedBySeller(id, sellerId) && !User.IsAdmin())
             {
                 return BadRequest();
             }

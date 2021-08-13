@@ -1,8 +1,8 @@
 ﻿namespace GameStore.Services.Games
 {
-    using System.Collections.Generic;
     using GameStore.Models;
     using GameStore.Service.Games;
+    using System.Collections.Generic;
 
     public interface IGameService
     {

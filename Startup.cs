@@ -1,12 +1,14 @@
 namespace GameStore
 {
     using GameStore.Data;
+    using GameStore.Data.Models;
     using GameStore.Infrastructure;
     using GameStore.Services.Games;
     using GameStore.Services.Sellers;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +16,8 @@ namespace GameStore
 
     public class Startup
     {
-        public Startup(IConfiguration configuration) => this.Configuration = configuration;
+        public Startup(IConfiguration configuration) 
+            => this.Configuration = configuration;
 
         public IConfiguration Configuration { get; }
 
@@ -25,15 +28,20 @@ namespace GameStore
             
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options =>
+            services.AddDefaultIdentity<User>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
             })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<GameStoreDbContext>();
-            services.AddControllersWithViews();
+
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+            });
 
             services.AddTransient<IGameService, GameService>();
             services.AddTransient<ISellerService, SellerService>();
@@ -54,21 +62,18 @@ namespace GameStore
                 
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
+            app.UseHttpsRedirection()
+               .UseStaticFiles()
+               .UseRouting()
+               .UseAuthentication()
+               .UseAuthorization()
+               .UseEndpoints(endpoints =>
+               {
+                    endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
-            });
+                    endpoints.MapRazorPages();
+               });
         }
     }
 }

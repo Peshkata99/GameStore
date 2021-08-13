@@ -1,11 +1,11 @@
 ﻿namespace GameStore.Services.Games
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using GameStore.Data;
     using GameStore.Data.Models;
     using GameStore.Models;
     using GameStore.Service.Games;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class GameService : IGameService
     {
