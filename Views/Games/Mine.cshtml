@@ -1,0 +1,13 @@
+﻿@model IEnumerable<GameServiceModel>
+
+@{
+    ViewBag.Title = "My Games";
+    ViewBag.AllowGameEdit = true;
+}
+
+@if (!Model.Any())
+{
+    <h2 class="text-center">You do not have any games yet!</h2>
+}
+
+<partial name="_GamesPartial" model="@Model" />

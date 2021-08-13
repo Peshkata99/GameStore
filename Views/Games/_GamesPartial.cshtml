@@ -1,0 +1,21 @@
+﻿@model IEnumerable<GameServiceModel>
+
+<div class="row">
+    @foreach (var game in Model)
+    {
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img class="card-img-top" src="@game.ImageUrl" alt="@game.Name - @game.ReleaseDate">
+                <div class="card-body text-center">
+                    <h5 class="card-title text-center">@game.Name (@game.ReleaseDate) - @game.Price$</h5>
+                    <a asp-controller="Games" asp-action="Details" asp-route-id="@game.Id" class="btn btn-primary">View More</a>
+                    @if (ViewBag.AllowGameEdit == true)
+                    {
+                        <a asp-controller="Games" asp-action="Edit" asp-route-id="@game.Id" class="btn btn-warning">Edit</a>
+                        <a asp-controller="Games" asp-action="Delete" asp-route-id="@game.Id" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?');">Delete</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

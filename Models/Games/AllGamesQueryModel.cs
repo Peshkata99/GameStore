@@ -20,11 +20,8 @@
 
         public int TotalGames { get; set; }
 
-        
         public IEnumerable<string> Genres { get; set; }
 
-        public IEnumerable<GameServiceModel> Games { get; set; }
-
-        
+        public IEnumerable<GameServiceModel> Games { get; set; }       
     }
 }

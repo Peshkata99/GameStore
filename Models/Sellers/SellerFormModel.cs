@@ -4,7 +4,7 @@
 
     using static Data.DataConstants.Seller;
 
-    public class BecomeSellerFormModel
+    public class SellerFormModel
     {
         [Required]
         [StringLength(NameMaxLength, MinimumLength = NameMinLength)]

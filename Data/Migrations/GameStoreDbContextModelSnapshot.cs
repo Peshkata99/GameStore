@@ -130,12 +130,9 @@ namespace GameStore.Data.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Sellers");
                 });
@@ -345,7 +342,7 @@ namespace GameStore.Data.Migrations
                     b.HasOne("GameStore.Data.Models.Game", "Game")
                         .WithMany("DownloadableContents")
                         .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Game");
@@ -356,26 +353,16 @@ namespace GameStore.Data.Migrations
                     b.HasOne("GameStore.Data.Models.Genre", "Genre")
                         .WithMany("Games")
                         .HasForeignKey("GenreId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GameStore.Data.Models.Seller", "Seller")
                         .WithMany("Games")
-                        .HasForeignKey("SellerId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("SellerId");
 
                     b.Navigation("Genre");
 
                     b.Navigation("Seller");
-                });
-
-            modelBuilder.Entity("GameStore.Data.Models.Seller", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
-                        .WithOne()
-                        .HasForeignKey("GameStore.Data.Models.Seller", "UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

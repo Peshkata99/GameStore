@@ -1,24 +1,21 @@
 ﻿namespace GameStore.Controllers
 {
-    using GameStore.Data;
-    using GameStore.Data.Models;
     using GameStore.Models.Games;
     using GameStore.Infrastructure;
     using Microsoft.AspNetCore.Mvc;
-    using System.Collections.Generic;
-    using System.Linq;
     using Microsoft.AspNetCore.Authorization;
     using GameStore.Services.Games;
+    using GameStore.Services.Sellers;
 
     public class GamesController : Controller
     {
         private readonly IGameService games;
-        private readonly GameStoreDbContext data;
+        private readonly ISellerService sellers;
 
-        public GamesController(IGameService games,GameStoreDbContext data)
+        public GamesController(IGameService games,ISellerService sellers)
         {
             this.games = games;
-            this.data = data;
+            this.sellers = sellers;
         }
 
         public IActionResult All([FromQuery] AllGamesQueryModel query)
@@ -30,7 +27,7 @@
                 query.CurrentPage,
                 AllGamesQueryModel.GamesPerPage);
 
-            var genreNames = this.games.AllGameGenres();
+            var genreNames = this.games.AllGenreNames();
 
             query.Genres = genreNames;
             query.TotalGames = queryResult.TotalGames;
@@ -38,75 +35,155 @@
 
             return View(query);
         }
+
+        [Authorize]
+        public IActionResult Mine()
+        {
+            var ownedGames = this.games.OwnedByUser(this.User.Id());
+
+            return View(ownedGames);
+        }
+
         [Authorize]
         public IActionResult Add() 
         {
-            if (!this.UserIsSeller())
+            if (!this.sellers.IsSeller(this.User.Id()))
             {
                 return RedirectToAction(nameof(SellersController.Become), "Sellers");
             }
 
-            return View(new AddGameFormModel
+            return View(new GameFormModel
             {
-                Genres = this.GetGameGenres()
+                Genres = this.games.AllGameGenres()
             });
         }
 
         [HttpPost]
-        public IActionResult Add(AddGameFormModel game)
+        [Authorize]
+        public IActionResult Add(GameFormModel game)
         {
-            var sellerId = this.data
-                .Sellers
-                .Where(d => d.UserId == this.User.GetId())
-                .Select(d => d.Id)
-                .FirstOrDefault();
+            var sellerId = this.sellers.IdByUser(this.User.Id());
 
             if (sellerId == 0)
             {
                 return RedirectToAction(nameof(SellersController.Become), "Sellers");
             }
 
-            if (!this.data.Genres.Any(g => g.Id == game.GenreId))
+            if (!this.games.GenreExists(game.GenreId))
             {
                 this.ModelState.AddModelError(nameof(game.GenreId), "Genre does not exist");
             }
 
             if (!ModelState.IsValid)
             {
-                game.Genres = this.GetGameGenres();
+                game.Genres = this.games.AllGameGenres();
 
                 return View(game);
             }
 
-            var gameData = new Game
+            this.games.Create(
+                game.Name,
+                game.Price,
+                game.Description,
+                game.Developer,
+                game.ReleaseYear,
+                game.ImageUrl,
+                game.GenreId,
+                sellerId);
+
+            return RedirectToAction(nameof(All));
+        }
+
+        [Authorize]
+        public IActionResult Delete(int id)
+        {
+            var userId = this.User.Id();
+
+            if (!this.sellers.IsSeller(userId))
+            {
+                return RedirectToAction(nameof(SellersController.Become), "Sellers");
+            }
+
+            var game = this.games.Details(id);
+
+            if (game.UserId != userId)
+            {
+                return Unauthorized();
+            }
+
+            this.games.Delete(id);
+
+            return RedirectToAction(nameof(All));
+        }
+
+        [Authorize]
+        public IActionResult Edit(int id)
+        {
+            var userId = this.User.Id();
+
+            if (!this.sellers.IsSeller(userId))
+            {
+                return RedirectToAction(nameof(SellersController.Become), "Sellers");
+            }
+
+            var game = this.games.Details(id);
+
+            if(game.UserId != userId)
+            {
+                return Unauthorized();
+            }
+
+            return View(new GameFormModel
             {
                 Name = game.Name,
                 Price = game.Price,
                 Description = game.Description,
                 Developer = game.Developer,
-                ReleaseYear = game.ReleaseYear,
                 ImageUrl = game.ImageUrl,
+                ReleaseYear = game.ReleaseDate,
                 GenreId = game.GenreId,
-                SellerId = sellerId
-            };
+                Genres = this.games.AllGameGenres()
+            });
+        }
+        [HttpPost]
+        [Authorize]
+        public IActionResult Edit(int id,GameFormModel game)
+        {
+            var sellerId = this.sellers.IdByUser(this.User.Id());
 
-            this.data.Games.Add(gameData);
-            this.data.SaveChanges();
+            if(sellerId == 0)
+            {
+                return RedirectToAction(nameof(SellersController.Become), "Sellers");
+            }
+
+            if (!this.games.GenreExists(game.GenreId))
+            {
+                this.ModelState.AddModelError(nameof(game.GenreId), "Genre does not exist.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                game.Genres = this.games.AllGameGenres();
+
+                return View(game);
+            }
+
+            if (!this.games.OwnedBySeller(id, sellerId))
+            {
+                return BadRequest();
+            }
+
+            this.games.Edit(
+                id,
+                game.Name,
+                game.Price,
+                game.Description,
+                game.Developer,
+                game.ReleaseYear,
+                game.ImageUrl,
+                game.GenreId);
 
             return RedirectToAction(nameof(All));
         }
-        private bool UserIsSeller()
-            => this.data
-                .Sellers
-                .Any(d => d.UserId == this.User.GetId());
-
-        private IEnumerable<GameGenreViewModel> GetGameGenres()
-            => this.data
-                .Genres
-                .Select(g => new GameGenreViewModel
-                {
-                    Id = g.Id,
-                    Name = g.Name
-                }).ToList();
     }
 }

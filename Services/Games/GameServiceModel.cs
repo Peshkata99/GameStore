@@ -11,5 +11,7 @@
         public string ImageUrl { get; set; }
 
         public int ReleaseDate { get; set; }
+
+        public string GenreName { get; set; }
     }
 }

@@ -3,6 +3,7 @@ namespace GameStore
     using GameStore.Data;
     using GameStore.Infrastructure;
     using GameStore.Services.Games;
+    using GameStore.Services.Sellers;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -10,6 +11,7 @@ namespace GameStore
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+
     public class Startup
     {
         public Startup(IConfiguration configuration) => this.Configuration = configuration;
@@ -34,6 +36,7 @@ namespace GameStore
             services.AddControllersWithViews();
 
             services.AddTransient<IGameService, GameService>();
+            services.AddTransient<ISellerService, SellerService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
