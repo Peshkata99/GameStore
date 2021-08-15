@@ -13,6 +13,7 @@
         public string Name { get; set; }
 
         [Required]
+        [Range(MinPrice,MaxPrice)]
         public decimal Price { get; set; }
 
         [Required]

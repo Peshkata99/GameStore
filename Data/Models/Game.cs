@@ -38,5 +38,7 @@
         public Seller Seller { get; set; }
 
         public IEnumerable<DownloadableContent> DownloadableContents { get; set; } = new List<DownloadableContent>();
+
+        public IEnumerable<Review> Reviews { get; set; } = new List<Review>();
     }
 }

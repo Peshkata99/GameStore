@@ -117,6 +117,14 @@
         }
 
         [Authorize]
+        public IActionResult Details(int id)
+        {
+            var game = this.games.Details(id);
+
+            return View(game);
+        }
+
+        [Authorize]
         public IActionResult Edit(int id)
         {
             var userId = this.User.Id();

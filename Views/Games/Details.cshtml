@@ -1,0 +1,27 @@
+﻿@model GameDetailsServiceModel
+
+
+
+<div class="row">
+        <div class="col-md-5">
+            <div class="project-info-box mt-0">
+                <h1>@Model.Name</h1>
+                
+            </div><!-- / project-info-box -->
+
+            <div class="project-info-box">
+                <p><b>Client:</b> CUPCAKE CO</p>
+                <p><b>Release Date:</b> @Model.ReleaseDate</p>
+                <p><b>Developer:</b> @Model.Developer</p>
+                <p><b>Price:</b> @Model.Price$</p>
+                <p class="mb-0">@Model.Description @Model.Description @Model.Description @Model.Description</p>
+            </div><!-- / project-info-box -->
+        </div><!-- / column -->
+
+        <div class="col-md-7">
+            <img src="@Model.ImageUrl" alt="project-image" class="rounded">
+            <div class="project-info-box">
+                <p><b>Genre:</b> @Model.GenreName</p>
+            </div><!-- / project-info-box -->
+        </div><!-- / column -->
+ </div>

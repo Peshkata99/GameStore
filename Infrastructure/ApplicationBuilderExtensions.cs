@@ -10,7 +10,8 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using static WebConstants;
+    using static Areas.Admin.AdminConstants;
+
     public static class ApplicationBuilderExtensions
     {
         public static IApplicationBuilder PrepareDatabase( 

@@ -42,5 +42,14 @@
             public const int PhoneNumberMinLength = 6;
             public const int PhoneNumberMaxLength = 30;
         }
+
+        public class Review
+        {
+            public const int ContentMinLength = 10;
+            public const int ContentMaxLength = 500;
+
+            public const int StarMinCount = 1;
+            public const int StarMaxCount = 5;
+        }
     }
 }

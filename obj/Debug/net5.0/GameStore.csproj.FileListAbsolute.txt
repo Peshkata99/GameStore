@@ -445,3 +445,8 @@ C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\bin\Debug\net5.0\ru
 C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
 C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
 C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
+C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Areas\Admin\Views\Games\Index.cshtml.g.cs
+C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
+C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Views\Games\Details.cshtml.g.cs
+C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Views\DownloadableContents\DownloadableContentForm.cshtml.g.cs
+C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Views\Reviews\ReviewForm.cshtml.g.cs

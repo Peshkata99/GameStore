@@ -19,6 +19,8 @@
 
         public DbSet<DownloadableContent> DownloadableContents { get; set; }
 
+        public DbSet<Review> Reviews { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
@@ -53,8 +55,23 @@
                 .Entity<Seller>()
                 .HasOne<User>()
                 .WithOne()
-                .HasForeignKey<Seller>(d => d.UserId)
+                .HasForeignKey<Seller>(s => s.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<Review>()
+                .HasOne<Game>()
+                .WithMany(g => g.Reviews)
+                .HasForeignKey(r => r.GameId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder
+                .Entity<User>()
+                .HasMany<Review>()
+                .WithOne(r => r.User)
+                .HasForeignKey(r => r.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
 
             base.OnModelCreating(builder);
         }

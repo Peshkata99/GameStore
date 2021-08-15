@@ -69,10 +69,9 @@ namespace GameStore
                .UseAuthorization()
                .UseEndpoints(endpoints =>
                {
-                    endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                    endpoints.MapRazorPages();
+                   endpoints.MapDefaultAreaRoute();
+                   endpoints.MapDefaultControllerRoute();
+                   endpoints.MapRazorPages();
                });
         }
     }

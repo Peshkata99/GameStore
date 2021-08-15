@@ -79,7 +79,7 @@
             return gameData.Id;
         }
 
-        public GameDetailsServiceModel Details(int id) 
+        public GameDetailsServiceModel Details(int id)
             => this.data
             .Games
             .Where(g => g.Id == id)
@@ -97,6 +97,7 @@
                 UserId = g.Seller.UserId
             })
             .FirstOrDefault();
+    
         public bool Delete(int id)
         {
             var gameData = this.data.Games.Find(id);
