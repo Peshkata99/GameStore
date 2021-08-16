@@ -4,6 +4,7 @@
     using GameStore.Data.Models;
     using GameStore.Models;
     using GameStore.Service.Games;
+    using GameStore.Services.Reviews;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -85,6 +86,7 @@
             .Where(g => g.Id == id)
             .Select(g => new GameDetailsServiceModel
             {
+                Id = id,
                 Name = g.Name,
                 Price = g.Price,
                 Description = g.Description,
@@ -94,7 +96,17 @@
                 GenreName = g.Genre.Name,
                 SellerName = g.Seller.Name,
                 SellerId = g.Seller.Id,
-                UserId = g.Seller.UserId
+                UserId = g.Seller.UserId,
+                Reviews = g.Reviews.Select
+                    (r => new ReviewServiceModel
+                    {
+                        Id = r.Id,
+                        Content = r.Content,
+                        StarCount = r.StarCount,
+                        Username = r.User.UserName,
+                        PostedOn = r.PostedOn,
+                        UserId = r.UserId
+                     }).ToList()
             })
             .FirstOrDefault();
     

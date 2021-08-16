@@ -49,20 +49,27 @@ using GameStore.Models.Sellers;
 #nullable disable
 #nullable restore
 #line 6 "C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\Views\_ViewImports.cshtml"
-using GameStore.Services.Games;
+using GameStore.Models.Reviews;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\Views\_ViewImports.cshtml"
+using GameStore.Services.Games;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 8 "C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\Views\_ViewImports.cshtml"
 using GameStore.Services.Sellers;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"79d3a07a1e85451e7eaefef43e55af8c078ea60e", @"/Views/Games/_GamesPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"cb8136eaf0006fda95bcc62f93ff8c02aedaac12", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"af71f6106b19f9e18cabd0094961d91029406470", @"/Views/_ViewImports.cshtml")]
     public class Views_Games__GamesPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<GameServiceModel>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Games", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -158,7 +165,7 @@ WriteAttributeValue(" ", 249, game.ReleaseDate, 250, 17, false);
 #line hidden
 #nullable disable
             WriteLiteral("$</h5>\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "79d3a07a1e85451e7eaefef43e55af8c078ea60e9246", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "79d3a07a1e85451e7eaefef43e55af8c078ea60e9446", async() => {
                 WriteLiteral("View More");
             }
             );
@@ -201,7 +208,7 @@ WriteAttributeValue(" ", 249, game.ReleaseDate, 250, 17, false);
 #line hidden
 #nullable disable
             WriteLiteral("                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "79d3a07a1e85451e7eaefef43e55af8c078ea60e12059", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "79d3a07a1e85451e7eaefef43e55af8c078ea60e12259", async() => {
                 WriteLiteral("Edit");
             }
             );
@@ -235,7 +242,7 @@ WriteAttributeValue(" ", 249, game.ReleaseDate, 250, 17, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "79d3a07a1e85451e7eaefef43e55af8c078ea60e14565", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "79d3a07a1e85451e7eaefef43e55af8c078ea60e14765", async() => {
                 WriteLiteral("Delete");
             }
             );

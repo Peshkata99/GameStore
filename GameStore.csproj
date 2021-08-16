@@ -22,7 +22,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Services\DownloadableContents\" />
-    <Folder Include="Services\Reviews\" />
   </ItemGroup>
 
 </Project>

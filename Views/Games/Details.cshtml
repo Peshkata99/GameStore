@@ -1,27 +1,53 @@
 ﻿@model GameDetailsServiceModel
 
-
-
 <div class="row">
-        <div class="col-md-5">
-            <div class="project-info-box mt-0">
-                <h1>@Model.Name</h1>
-                
-            </div><!-- / project-info-box -->
+    <div>
+        <div>
+            <h1>@Model.Name</h1>
 
-            <div class="project-info-box">
-                <p><b>Client:</b> CUPCAKE CO</p>
-                <p><b>Release Date:</b> @Model.ReleaseDate</p>
-                <p><b>Developer:</b> @Model.Developer</p>
-                <p><b>Price:</b> @Model.Price$</p>
-                <p class="mb-0">@Model.Description @Model.Description @Model.Description @Model.Description</p>
-            </div><!-- / project-info-box -->
-        </div><!-- / column -->
+        </div><!-- / project-info-box -->
 
-        <div class="col-md-7">
-            <img src="@Model.ImageUrl" alt="project-image" class="rounded">
-            <div class="project-info-box">
-                <p><b>Genre:</b> @Model.GenreName</p>
-            </div><!-- / project-info-box -->
-        </div><!-- / column -->
- </div>
+        <div class="project-info-box">
+            <p><b>Release Date:</b> @Model.ReleaseDate</p>
+            <p><b>Developer:</b> @Model.Developer</p>
+            <p><b>Price:</b> @Model.Price$</p>
+            <p class="mb-0">@Model.Description @Model.Description @Model.Description @Model.Description</p>
+        </div><!-- / project-info-box -->
+    </div><!-- / column -->
+
+    <div>
+        <img src="@Model.ImageUrl" alt="project-image" class="rounded">
+        <div class="project-info-box">
+            <p><b>Genre:</b> @Model.GenreName</p>
+        </div><!-- / project-info-box -->
+    </div><!-- / column -->
+</div>
+<div>
+    <div>
+        <a asp-controller="Reviews" asp-action="Add" asp-route-id="@Model.Id" class="btn btn-primary">Add Review</a>
+        <div>
+            <div class="card-body text-center">
+                <h4 class="card-title">Latest Reviews</h4>
+            </div>
+            <div class="comment-widgets">
+                @foreach (var review in Model.Reviews)
+                {
+                    <div class="d-flex flex-row comment-row m-t-0">
+                        <div class="p-2"><img src="https://i.imgur.com/Ur43esv.jpg" alt="user" width="50" class="rounded-circle"></div>
+                        <div class="comment-text">
+                            <h6 class="font-medium">@review.Username</h6> <span class="m-b-15 d-block">@review.Content</span>
+                            <div class="comment-footer">
+                                <span class="text-muted float-right">@review.PostedOn</span>
+                                @if (this.User.Id() == review.UserId || User.IsAdmin())
+                                 {
+                                    <a asp-controller="Reviews" asp-action="Edit" asp-route-id="@review.Id" class="btn btn-warning">Edit</a>
+                                    <a asp-controller="Reviews" asp-action="Delete" asp-route-id="@review.Id" class="btn btn-danger">Delete</a>
+                                  }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div> <!-- Card -->
+        </div>
+    </div>
+</div>

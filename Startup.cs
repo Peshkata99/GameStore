@@ -4,6 +4,7 @@ namespace GameStore
     using GameStore.Data.Models;
     using GameStore.Infrastructure;
     using GameStore.Services.Games;
+    using GameStore.Services.Reviews;
     using GameStore.Services.Sellers;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -45,6 +46,7 @@ namespace GameStore
 
             services.AddTransient<IGameService, GameService>();
             services.AddTransient<ISellerService, SellerService>();
+            services.AddTransient<IReviewService, ReviewService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

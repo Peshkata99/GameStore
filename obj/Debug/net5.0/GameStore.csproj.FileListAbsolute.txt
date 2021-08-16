@@ -449,4 +449,6 @@ C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Ra
 C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
 C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Views\Games\Details.cshtml.g.cs
 C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Views\DownloadableContents\DownloadableContentForm.cshtml.g.cs
-C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Views\Reviews\ReviewForm.cshtml.g.cs
+C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Views\Reviews\Add.cshtml.g.cs
+C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Views\Reviews\Edit.cshtml.g.cs
+C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Views\Reviews\_ReviewFormPartial.cshtml.g.cs
