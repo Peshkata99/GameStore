@@ -4,14 +4,16 @@ using GameStore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GameStore.Data.Migrations
 {
     [DbContext(typeof(GameStoreDbContext))]
-    partial class GameStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210816205927_FixedDLCDataModel")]
+    partial class FixedDLCDataModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -202,11 +204,6 @@ namespace GameStore.Data.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DisplayName")
-                        .IsRequired()
-                        .HasMaxLength(35)
-                        .HasColumnType("nvarchar(35)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -401,7 +398,7 @@ namespace GameStore.Data.Migrations
                     b.HasOne("GameStore.Data.Models.Game", "Game")
                         .WithMany("DownloadableContents")
                         .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Game");
@@ -430,7 +427,7 @@ namespace GameStore.Data.Migrations
                     b.HasOne("GameStore.Data.Models.Game", null)
                         .WithMany("Reviews")
                         .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("GameStore.Data.Models.Game", "Game")

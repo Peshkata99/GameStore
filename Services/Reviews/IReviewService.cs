@@ -4,9 +4,14 @@
 
     public interface IReviewService
     {
-        public int Create(string content, int starCount, string userId, int gameId);
+        public int Create(string content, 
+            int starCount, 
+            string userId, 
+            int gameId);
 
-        public bool Edit(int id, string content, int starCount);
+        public bool Edit(int id, 
+            string content, 
+            int starCount);
 
         public bool Delete(int id);
 

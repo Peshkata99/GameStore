@@ -13,6 +13,7 @@
                     {
                         <a asp-controller="Games" asp-action="Edit" asp-route-id="@game.Id" class="btn btn-warning">Edit</a>
                         <a asp-controller="Games" asp-action="Delete" asp-route-id="@game.Id" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?');">Delete</a>
+                        <a asp-controller="DownloadableContents" asp-action="Add" asp-route-id="@game.Id" class="btn btn-primary">Add DLC</a>
                     }
                 </div>
             </div>

@@ -56,20 +56,34 @@ using GameStore.Models.Reviews;
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\Views\_ViewImports.cshtml"
-using GameStore.Services.Games;
+using GameStore.Models.DownloadableContents;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 8 "C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\Views\_ViewImports.cshtml"
+using GameStore.Services.Games;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\Views\_ViewImports.cshtml"
 using GameStore.Services.Sellers;
 
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 10 "C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\Views\_ViewImports.cshtml"
+using GameStore.Services.DownloadableContents;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b09aa2e689d8b40e33d4feed4586842f48cd63e6", @"/Views/Games/Mine.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"af71f6106b19f9e18cabd0094961d91029406470", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"44982f58c3dbbb3a827c4c308c94834a9dab3c88", @"/Views/_ViewImports.cshtml")]
     public class Views_Games_Mine : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<GameServiceModel>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("name", "_GamesPartial", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -125,7 +139,7 @@ using GameStore.Services.Sellers;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "b09aa2e689d8b40e33d4feed4586842f48cd63e65370", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "b09aa2e689d8b40e33d4feed4586842f48cd63e65799", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();

@@ -19,7 +19,7 @@
         }
 
         [Authorize]
-        public IActionResult Add(int  id) => View(new ReviewFormModel());
+        public IActionResult Add() => View(new ReviewFormModel());
 
         [HttpPost]
         [Authorize]

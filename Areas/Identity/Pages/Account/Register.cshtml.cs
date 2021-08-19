@@ -37,8 +37,9 @@
             public string Email { get; set; }
             
             [Required]
-            [StringLength(UsernameMaxLength)]
-            public string Username { get; set; }
+            [StringLength(NameMaxLength,MinimumLength = NameMinLength)]
+            [Display(Name = "Display Name")]
+            public string DisplayName { get; set; }
 
             [Required]
             [StringLength(PasswordMaxLength, MinimumLength = PasswordMinLength)]
@@ -64,8 +65,9 @@
             {
                 var user = new User
                 { 
-                    UserName = Input.Username, 
-                    Email = Input.Email 
+                    UserName = Input.Email, 
+                    Email = Input.Email,
+                    DisplayName = Input.DisplayName
                 };
 
                 var result = await this.userManager.CreateAsync(user, Input.Password);

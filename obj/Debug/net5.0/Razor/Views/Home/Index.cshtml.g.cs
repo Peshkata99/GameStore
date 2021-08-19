@@ -56,20 +56,34 @@ using GameStore.Models.Reviews;
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\Views\_ViewImports.cshtml"
-using GameStore.Services.Games;
+using GameStore.Models.DownloadableContents;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 8 "C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\Views\_ViewImports.cshtml"
+using GameStore.Services.Games;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\Views\_ViewImports.cshtml"
 using GameStore.Services.Sellers;
 
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 10 "C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\Views\_ViewImports.cshtml"
+using GameStore.Services.DownloadableContents;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ca24c6ecbc53f0001304ad66ab1bd2e9ce87f1ed", @"/Views/Home/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"af71f6106b19f9e18cabd0094961d91029406470", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"44982f58c3dbbb3a827c4c308c94834a9dab3c88", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

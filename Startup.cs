@@ -3,6 +3,7 @@ namespace GameStore
     using GameStore.Data;
     using GameStore.Data.Models;
     using GameStore.Infrastructure;
+    using GameStore.Services.DownloadableContents;
     using GameStore.Services.Games;
     using GameStore.Services.Reviews;
     using GameStore.Services.Sellers;
@@ -47,6 +48,7 @@ namespace GameStore
             services.AddTransient<IGameService, GameService>();
             services.AddTransient<ISellerService, SellerService>();
             services.AddTransient<IReviewService, ReviewService>();
+            services.AddTransient<IDownloadableContentService, DownloadableContentService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

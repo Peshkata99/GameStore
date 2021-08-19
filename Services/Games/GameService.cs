@@ -103,7 +103,7 @@
                         Id = r.Id,
                         Content = r.Content,
                         StarCount = r.StarCount,
-                        Username = r.User.UserName,
+                        DisplayName = r.User.DisplayName,
                         PostedOn = r.PostedOn,
                         UserId = r.UserId
                      }).ToList()

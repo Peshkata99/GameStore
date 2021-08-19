@@ -129,11 +129,6 @@
         {
             var userId = this.User.Id();
 
-            if (!this.sellers.IsSeller(userId) && !User.IsAdmin())
-            {
-                return RedirectToAction(nameof(SellersController.Become), "Sellers");
-            }
-
             var game = this.games.Details(id);
 
             if(game.UserId != userId && !User.IsAdmin())

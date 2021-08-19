@@ -42,7 +42,7 @@
                 .HasOne(dc => dc.Game)
                 .WithMany(c => c.DownloadableContents)
                 .HasForeignKey(dc => dc.GameId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .Entity<Genre>()
@@ -63,7 +63,7 @@
                 .HasOne<Game>()
                 .WithMany(g => g.Reviews)
                 .HasForeignKey(r => r.GameId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .Entity<User>()

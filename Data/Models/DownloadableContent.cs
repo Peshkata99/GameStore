@@ -19,7 +19,11 @@
         [Required]
         public string Description { get; set; }
 
+        public int ReleaseYear { get; set; }
+
         [Required]
+        public string ImageURL { get; set; }
+
         public int GameId { get; set; }
 
         public Game Game { get; set; }
