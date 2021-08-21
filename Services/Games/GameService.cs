@@ -4,6 +4,7 @@
     using GameStore.Data.Models;
     using GameStore.Models;
     using GameStore.Service.Games;
+    using GameStore.Services.DownloadableContents;
     using GameStore.Services.Reviews;
     using System.Collections.Generic;
     using System.Linq;
@@ -106,6 +107,7 @@
                         PostedOn = r.PostedOn,
                         UserId = r.UserId
                      }).ToList()
+                
             })
             .FirstOrDefault();
     

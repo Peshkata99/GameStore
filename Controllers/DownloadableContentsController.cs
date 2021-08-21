@@ -21,7 +21,9 @@
         [Authorize]
         public IActionResult All(int id)
         {
-            return View();
+            var dlcsData = this.dlcs.GetDlcs(id);
+
+            return View(dlcsData);
         }
 
         [Authorize]

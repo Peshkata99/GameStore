@@ -18,5 +18,7 @@
         public string UserId { get; init; }
 
         public IEnumerable<ReviewServiceModel> Reviews { get; set; }
+
+        public IEnumerable<ReviewServiceModel> Dlcs { get; set; }
     }
 }

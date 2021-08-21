@@ -2,6 +2,8 @@
 {
     using GameStore.Data;
     using GameStore.Data.Models;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class DownloadableContentService : IDownloadableContentService
     {
@@ -65,8 +67,24 @@
         }
 
         public DownloadableContent GetDlc(int id)
-            => this.data.DownloadableContents
+            => this.data
+            .DownloadableContents
                     .Find(id);
+
+        public IEnumerable<DownloadableContentServiceModel> GetDlcs(int id)
+            => this.data
+            .DownloadableContents
+            .Where(dlc => dlc.GameId == id)
+            .Select(dlc => new DownloadableContentServiceModel
+            {
+                Name = dlc.Name,
+                Price = dlc.Price,
+                Description = dlc.Description,
+                ReleaseDate = dlc.ReleaseYear,
+                ImageUrl = dlc.ImageURL,
+                Id = dlc.Id,
+                GameId = dlc.GameId
+            });
 
         public int GetGameId(int id)
             => this.data

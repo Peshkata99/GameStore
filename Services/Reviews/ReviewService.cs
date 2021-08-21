@@ -75,6 +75,7 @@
         public IEnumerable<ReviewServiceModel> AllReviews(int id)
             => this.data
             .Reviews
+            .Where(r => r.GameId == id)
             .Select(r => new ReviewServiceModel 
             { 
                 Content = r.Content,
