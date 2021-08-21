@@ -8,8 +8,6 @@
 
         public string Content { get; set; }
 
-        public int StarCount { get; set; }
-
         public string DisplayName { get; set; }
 
         public string UserId { get; set; }

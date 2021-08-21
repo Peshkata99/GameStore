@@ -21,6 +21,7 @@
         public string Developer { get; set; }
 
         [Required]
+        [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
 
         [Range(MinReleaseYear,MaxReleaseYear)]

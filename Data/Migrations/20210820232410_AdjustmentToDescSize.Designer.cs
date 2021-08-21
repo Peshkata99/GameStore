@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameStore.Data.Migrations
 {
     [DbContext(typeof(GameStoreDbContext))]
-    [Migration("20210815053856_AddedReviewModel")]
-    partial class AddedReviewModel
+    [Migration("20210820232410_AdjustmentToDescSize")]
+    partial class AdjustmentToDescSize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,10 @@ namespace GameStore.Data.Migrations
                     b.Property<int>("GameId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ImageURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -42,6 +46,9 @@ namespace GameStore.Data.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ReleaseYear")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -59,7 +66,8 @@ namespace GameStore.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Developer")
                         .IsRequired()
@@ -197,6 +205,11 @@ namespace GameStore.Data.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DisplayName")
+                        .IsRequired()
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -391,7 +404,7 @@ namespace GameStore.Data.Migrations
                     b.HasOne("GameStore.Data.Models.Game", "Game")
                         .WithMany("DownloadableContents")
                         .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Game");
@@ -420,7 +433,7 @@ namespace GameStore.Data.Migrations
                     b.HasOne("GameStore.Data.Models.Game", null)
                         .WithMany("Reviews")
                         .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GameStore.Data.Models.Game", "Game")

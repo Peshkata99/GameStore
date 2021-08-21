@@ -113,7 +113,7 @@
 
             this.games.Delete(id);
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction(nameof(Mine));
         }
 
         [Authorize]
@@ -186,7 +186,7 @@
                 game.ImageUrl,
                 game.GenreId);
 
-            return RedirectToAction(nameof(All));
+            return RedirectToAction(nameof(Mine));
         }
     }
 }

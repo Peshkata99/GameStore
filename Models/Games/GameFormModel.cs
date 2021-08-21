@@ -22,9 +22,9 @@
 
         [Required]
         [StringLength(
-            int.MaxValue,
+            DescriptionMaxLength,
             MinimumLength = DescriptionMinLength,
-            ErrorMessage = "The field Description must be a string with a minimum length of {2}")]
+            ErrorMessage = "The field Description must be a string between {1} and {2} characters long")]
         public string Description { get; set; }
 
         [Display(Name = "Release Year")]

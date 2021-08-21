@@ -3,6 +3,8 @@
     using GameStore.Data;
     using GameStore.Data.Models;
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class ReviewService : IReviewService
     {
@@ -10,6 +12,7 @@
 
         public ReviewService(GameStoreDbContext data)
             => this.data = data;
+
 
         public int Create(string content, int starCount, string userId, int gameId)
         {
@@ -19,7 +22,7 @@
                 StarCount = starCount,
                 UserId = userId,
                 GameId = gameId,
-                PostedOn = DateTime.UtcNow,      
+                PostedOn = DateTime.UtcNow,
             };
 
             this.data.Reviews.Add(reviewData);
@@ -32,7 +35,7 @@
         {
             var reviewData = this.data.Reviews.Find(id);
 
-            if(reviewData == null)
+            if (reviewData == null)
             {
                 return false;
             }
@@ -68,6 +71,17 @@
             => this.data
             .Reviews
             .Find(id).GameId;
-                
+
+        public IEnumerable<ReviewServiceModel> AllReviews(int id)
+            => this.data
+            .Reviews
+            .Select(r => new ReviewServiceModel 
+            { 
+                Content = r.Content,
+                PostedOn = r.PostedOn,
+                DisplayName = r.User.DisplayName,
+                Id = r.Id,
+                UserId = r.UserId
+            });
     }
 }

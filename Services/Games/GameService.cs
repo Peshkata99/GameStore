@@ -102,7 +102,6 @@
                     {
                         Id = r.Id,
                         Content = r.Content,
-                        StarCount = r.StarCount,
                         DisplayName = r.User.DisplayName,
                         PostedOn = r.PostedOn,
                         UserId = r.UserId

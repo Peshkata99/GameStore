@@ -23,6 +23,7 @@
             public const int DeveloperMaxLength = 40;
 
             public const int DescriptionMinLength = 20;
+            public const int DescriptionMaxLength = 300;
 
             public const int MinReleaseYear = 1962;
             public const int MaxReleaseYear = 2030;

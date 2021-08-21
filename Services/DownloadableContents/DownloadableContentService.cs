@@ -67,6 +67,11 @@
         public DownloadableContent GetDlc(int id)
             => this.data.DownloadableContents
                     .Find(id);
+
+        public int GetGameId(int id)
+            => this.data
+            .DownloadableContents
+            .Find(id).GameId;
     }
 }
 

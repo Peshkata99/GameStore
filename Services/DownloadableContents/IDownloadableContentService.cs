@@ -20,5 +20,7 @@
             string description);
 
         public DownloadableContent GetDlc(int id);
+
+        public int GetGameId(int id);
     }
 }

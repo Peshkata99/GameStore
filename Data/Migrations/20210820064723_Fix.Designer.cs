@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GameStore.Data.Migrations
 {
     [DbContext(typeof(GameStoreDbContext))]
-    [Migration("20210813170750_CustomUsers")]
-    partial class CustomUsers
+    [Migration("20210820064723_Fix")]
+    partial class Fix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,10 @@ namespace GameStore.Data.Migrations
                     b.Property<int>("GameId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ImageURL")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -42,6 +46,9 @@ namespace GameStore.Data.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ReleaseYear")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -113,6 +120,50 @@ namespace GameStore.Data.Migrations
                     b.ToTable("Genres");
                 });
 
+            modelBuilder.Entity("GameStore.Data.Models.Review", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("GameId1")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PostedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StarCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.HasIndex("GameId1");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1");
+
+                    b.ToTable("Reviews");
+                });
+
             modelBuilder.Entity("GameStore.Data.Models.Seller", b =>
                 {
                     b.Property<int>("Id")
@@ -153,6 +204,11 @@ namespace GameStore.Data.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DisplayName")
+                        .IsRequired()
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -347,7 +403,7 @@ namespace GameStore.Data.Migrations
                     b.HasOne("GameStore.Data.Models.Game", "Game")
                         .WithMany("DownloadableContents")
                         .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Game");
@@ -369,6 +425,33 @@ namespace GameStore.Data.Migrations
                     b.Navigation("Genre");
 
                     b.Navigation("Seller");
+                });
+
+            modelBuilder.Entity("GameStore.Data.Models.Review", b =>
+                {
+                    b.HasOne("GameStore.Data.Models.Game", null)
+                        .WithMany("Reviews")
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GameStore.Data.Models.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId1");
+
+                    b.HasOne("GameStore.Data.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("GameStore.Data.Models.User", null)
+                        .WithMany("Reviews")
+                        .HasForeignKey("UserId1");
+
+                    b.Navigation("Game");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("GameStore.Data.Models.Seller", b =>
@@ -434,6 +517,8 @@ namespace GameStore.Data.Migrations
             modelBuilder.Entity("GameStore.Data.Models.Game", b =>
                 {
                     b.Navigation("DownloadableContents");
+
+                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("GameStore.Data.Models.Genre", b =>
@@ -444,6 +529,11 @@ namespace GameStore.Data.Migrations
             modelBuilder.Entity("GameStore.Data.Models.Seller", b =>
                 {
                     b.Navigation("Games");
+                });
+
+            modelBuilder.Entity("GameStore.Data.Models.User", b =>
+                {
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

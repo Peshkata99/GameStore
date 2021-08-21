@@ -24,7 +24,6 @@
             return View();
         }
 
-        //check if id bugs it
         [Authorize]
         public IActionResult Add() => View(new DownloadableContentFormModel());
 
@@ -64,20 +63,26 @@
         [HttpPost]
         public IActionResult Edit(int id, DownloadableContentFormModel dlc)
         {
-            
+            var gameId = this.dlcs.GetGameId(id);
 
-            return RedirectToAction("Details", "Games", new { id = id });
+            this.dlcs.Edit(id,
+                dlc.Name,
+                dlc.Price,
+                dlc.ReleaseDate,
+                dlc.ImageUrl,
+                dlc.Description);
+
+            return RedirectToAction("Details", "Games", new { id = gameId });
         }
 
         [Authorize]
         public IActionResult Delete(int id)
         {
-            var userId = this.User.Id();
+            var gameId = this.dlcs.GetGameId(id);
 
             this.dlcs.Delete(id);
 
-            return RedirectToAction("Details", "Games", new { id = id });
+            return RedirectToAction("Details", "Games", new { id = gameId });
         }
-        
     }
 }

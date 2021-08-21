@@ -1,9 +1,12 @@
 ﻿namespace GameStore.Services.Reviews
 {
     using GameStore.Data.Models;
+    using System.Collections.Generic;
 
     public interface IReviewService
     {
+        public IEnumerable<ReviewServiceModel> AllReviews(int id);
+
         public int Create(string content, 
             int starCount, 
             string userId, 

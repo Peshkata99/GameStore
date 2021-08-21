@@ -73,3 +73,20 @@ body {
     margin-top: 10px;
     margin-bottom: 20px;
 }
+
+.card-size{
+    height:200px;
+}
+.card-size-2{
+    height:350px;
+    width:550px;
+}
+.custom-button{
+    margin-top:10px;
+}
+
+.review-border {
+    border-bottom: 1px black solid;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}

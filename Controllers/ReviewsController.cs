@@ -12,10 +12,18 @@
         public readonly IReviewService reviews;
         public readonly IGameService games;
 
-        public ReviewsController(IReviewService reviews,IGameService games)
+        public ReviewsController(IReviewService reviews, IGameService games)
         {
             this.games = games;
             this.reviews = reviews;
+        }
+
+        [Authorize]
+        public IActionResult All(int id)
+        {
+            var reviewsData = this.reviews.AllReviews(id);
+
+            return View(reviewsData);
         }
 
         [Authorize]

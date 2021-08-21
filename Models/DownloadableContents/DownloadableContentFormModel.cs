@@ -23,9 +23,9 @@
         public string ImageUrl { get; set; }
 
         [Required]
-        [StringLength(int.MaxValue, 
+        [StringLength(DescriptionMaxLength, 
             MinimumLength = DescriptionMinLength,
-            ErrorMessage = "The field Description must be a string with a minimum length of {2}")]
+            ErrorMessage = "The field Description must be a string between {1} and {2} characters")]
         public string Description { get; set; }
     }
 }
