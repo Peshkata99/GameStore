@@ -34,7 +34,7 @@
 
         public Genre Genre { get; set; }
 
-        public int? SellerId { get; set; }
+        public int SellerId { get; set; }
 
         public Seller Seller { get; set; }
 

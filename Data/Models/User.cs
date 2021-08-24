@@ -13,5 +13,7 @@
         public string DisplayName { get; set; }
 
         public IEnumerable<Review> Reviews { get; set; } = new List<Review>();
+
+        public IEnumerable<ShoppingCartItem> ShoppingCartItems { get; set; } = new List<ShoppingCartItem>();
     }
 }

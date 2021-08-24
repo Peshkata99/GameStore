@@ -65,7 +65,7 @@
             {
                 var user = new User
                 { 
-                    UserName = Input.DisplayName, 
+                    UserName = Input.Email, 
                     Email = Input.Email,
                     DisplayName = Input.DisplayName
                 };

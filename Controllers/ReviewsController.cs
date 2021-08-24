@@ -37,11 +37,6 @@
 
             var game = this.games.Details(id);
 
-            if (game.UserId != userId && !User.IsAdmin())
-            {
-                return Unauthorized();
-            }
-
             this.reviews
                 .Create(review.Content, userId, id);
 

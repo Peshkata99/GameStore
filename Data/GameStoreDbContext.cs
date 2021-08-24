@@ -72,6 +72,13 @@
                 .HasForeignKey(r => r.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder
+                .Entity<ShoppingCartItem>()
+                .HasOne<User>()
+                .WithMany(u => u.ShoppingCartItems)
+                .HasForeignKey(sh => sh.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
 
             base.OnModelCreating(builder);
         }
