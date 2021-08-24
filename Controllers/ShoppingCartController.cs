@@ -30,7 +30,7 @@
 
             this.shoppingCart.AddGame(id, userId);
 
-            return RedirectToAction("Details", "Games", new { id = id });
+            return RedirectToAction("All", "ShoppingCart", new { id = userId });
         }
 
         [Authorize]
@@ -40,15 +40,17 @@
 
             this.shoppingCart.AddDlc(id, userId);
 
-            return RedirectToAction("Details", "Games", new { id = 27 });
+            return RedirectToAction("All", "ShoppingCart", new { id = userId });
         }
 
         [Authorize]
         public IActionResult Remove(int id)
         {
+            var userId = this.User.Id();
+
             this.shoppingCart.Remove(id);
 
-            return RedirectToAction("Details", "Games", new { id = 27 });
+            return RedirectToAction("All", "ShoppingCart", new { id = userId });
         }
 
         [Authorize]
@@ -58,7 +60,7 @@
 
             this.shoppingCart.CheckOut(userId);
 
-            return RedirectToAction("Details", "Games", new { id = 27 });
+            return RedirectToAction("All", "ShoppingCart", new { id = userId });
         }
 
     }
