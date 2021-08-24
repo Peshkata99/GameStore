@@ -25,6 +25,8 @@
             public const int DescriptionMinLength = 20;
             public const int DescriptionMaxLength = 300;
 
+            public const int DlcDescriptionMaxLength = 200;
+
             public const int MinReleaseYear = 1962;
             public const int MaxReleaseYear = 2030;
         }
@@ -47,7 +49,7 @@
         public class Review
         {
             public const int ContentMinLength = 10;
-            public const int ContentMaxLength = 500;
+            public const int ContentMaxLength = 200;
 
             public const int StarMinCount = 1;
             public const int StarMaxCount = 5;

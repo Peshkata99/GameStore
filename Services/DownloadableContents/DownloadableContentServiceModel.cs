@@ -15,5 +15,7 @@
         public int ReleaseDate { get; set; }
 
         public int GameId { get; set; }
+
+        public string UserId { get; set; }
     }
 }

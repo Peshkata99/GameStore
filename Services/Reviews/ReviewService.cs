@@ -13,13 +13,11 @@
         public ReviewService(GameStoreDbContext data)
             => this.data = data;
 
-
-        public int Create(string content, int starCount, string userId, int gameId)
+        public int Create(string content, string userId, int gameId)
         {
             var reviewData = new Review
             {
                 Content = content,
-                StarCount = starCount,
                 UserId = userId,
                 GameId = gameId,
                 PostedOn = DateTime.UtcNow,
@@ -46,7 +44,7 @@
             return true;
         }
 
-        public bool Edit(int id, string content, int starCount)
+        public bool Edit(int id, string content)
         {
             var reviewData = this.data.Reviews.Find(id);
 
@@ -56,7 +54,6 @@
             }
 
             reviewData.Content = content;
-            reviewData.StarCount = starCount;
 
             this.data.SaveChanges();
 

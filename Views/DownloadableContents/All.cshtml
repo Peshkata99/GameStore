@@ -15,7 +15,7 @@
                     <li class="list-group-item">Release Date: @dlc.ReleaseDate</li>
                 </ul>
             <div class="card-body">
-                @if (User.IsAdmin())
+                @if (this.User.Id() == dlc.UserId || User.IsAdmin())
                  {
                     <a asp-controller="DownloadableContents" asp-action="Edit" asp-route-id="@dlc.Id" class="btn btn-warning">Edit</a>
                     <a asp-controller="DownloadableContents" asp-action="Delete" asp-route-id="@dlc.Id" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?');">Delete</a>

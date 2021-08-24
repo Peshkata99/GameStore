@@ -7,14 +7,12 @@
     {
         public IEnumerable<ReviewServiceModel> AllReviews(int id);
 
-        public int Create(string content, 
-            int starCount, 
+        public int Create(string content,
             string userId, 
             int gameId);
 
         public bool Edit(int id, 
-            string content, 
-            int starCount);
+            string content);
 
         public bool Delete(int id);
 

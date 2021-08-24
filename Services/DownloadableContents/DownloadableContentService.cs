@@ -83,7 +83,8 @@
                 ReleaseDate = dlc.ReleaseYear,
                 ImageUrl = dlc.ImageURL,
                 Id = dlc.Id,
-                GameId = dlc.GameId
+                GameId = dlc.GameId,
+                UserId = dlc.Game.Seller.UserId
             });
 
         public int GetGameId(int id)

@@ -13,9 +13,6 @@
         [MaxLength(ContentMaxLength)]
         public string Content { get; set; }
 
-        [Range(StarMinCount,StarMaxCount)]
-        public int StarCount { get; set; }
-
         public DateTime PostedOn { get; set; }
 
         [Required]

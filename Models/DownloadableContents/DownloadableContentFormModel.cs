@@ -23,7 +23,7 @@
         public string ImageUrl { get; set; }
 
         [Required]
-        [StringLength(DescriptionMaxLength, 
+        [StringLength(DlcDescriptionMaxLength, 
             MinimumLength = DescriptionMinLength,
             ErrorMessage = "The field Description must be a string between {1} and {2} characters")]
         public string Description { get; set; }

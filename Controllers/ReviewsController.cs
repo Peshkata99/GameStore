@@ -35,8 +35,15 @@
         {
             var userId = this.User.Id();
 
+            var game = this.games.Details(id);
+
+            if (game.UserId != userId && !User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             this.reviews
-                .Create(review.Content, review.StarCount, userId, id);
+                .Create(review.Content, userId, id);
 
             return RedirectToAction("Details", "Games", new { id = id });
         }
@@ -56,7 +63,6 @@
             return View(new ReviewFormModel
             {
                 Content = reviewData.Content,
-                StarCount = reviewData.StarCount
             });
         }
 
@@ -64,11 +70,17 @@
         [HttpPost]
         public IActionResult Edit(int id, ReviewFormModel review)
         {
+            var userId = this.User.Id();
+
             var gameId = this.reviews.GetGameId(id);
 
+            if (this.games.Details(gameId).UserId != userId && !User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             this.reviews.Edit(id, 
-                review.Content,
-                review.StarCount);
+                review.Content);
 
             return RedirectToAction("Details", "Games", new { id = gameId});
         }

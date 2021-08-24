@@ -34,6 +34,13 @@
         [Authorize]
         public IActionResult Add(int id, DownloadableContentFormModel dlc)
         {
+            var userId = this.User.Id();
+
+            if (this.games.Details(id).UserId == userId && !User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             this.dlcs.Create(dlc.Name,
                 dlc.Price,
                 dlc.ReleaseDate,
@@ -51,6 +58,11 @@
 
             var dlcData = this.dlcs.GetDlc(id);
 
+            if (this.games.Details(dlcData.GameId).UserId == userId && !User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             return View(new DownloadableContentFormModel
             {
                 Name = dlcData.Name,
@@ -65,8 +77,14 @@
         [HttpPost]
         public IActionResult Edit(int id, DownloadableContentFormModel dlc)
         {
+            var userId = this.User.Id();
+
             var gameId = this.dlcs.GetGameId(id);
 
+            if (this.games.Details(gameId).UserId == userId && !User.IsAdmin())
+            {
+                return Unauthorized();
+            }
             this.dlcs.Edit(id,
                 dlc.Name,
                 dlc.Price,
@@ -80,7 +98,14 @@
         [Authorize]
         public IActionResult Delete(int id)
         {
+            var userId = this.User.Id();
+
             var gameId = this.dlcs.GetGameId(id);
+
+            if (this.games.Details(gameId).UserId == userId && !User.IsAdmin())
+            {
+                return Unauthorized();
+            }
 
             this.dlcs.Delete(id);
 

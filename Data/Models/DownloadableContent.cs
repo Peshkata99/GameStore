@@ -17,6 +17,7 @@
         public decimal Price { get; set; }
 
         [Required]
+        [MaxLength(DlcDescriptionMaxLength)]
         public string Description { get; set; }
 
         public int ReleaseYear { get; set; }
