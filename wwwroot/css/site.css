@@ -90,3 +90,12 @@ body {
     padding-bottom: 10px;
     padding-top: 10px;
 }
+
+.shopping-cart-size{
+    width:150px;
+    height:100px;
+}
+.shopping-item-margin{
+    margin:10px;
+}
+

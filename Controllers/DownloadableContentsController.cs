@@ -4,6 +4,7 @@
     using GameStore.Models.DownloadableContents;
     using GameStore.Services.DownloadableContents;
     using GameStore.Services.Games;
+    using GameStore.Services.Sellers;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -11,11 +12,13 @@
     {
         public readonly IGameService games;
         public readonly IDownloadableContentService dlcs;
+        public readonly ISellerService sellers;
 
-        public DownloadableContentsController(IDownloadableContentService dlcs, IGameService games)
+        public DownloadableContentsController(IDownloadableContentService dlcs, IGameService games,ISellerService sellers)
         {
             this.games = games;
             this.dlcs = dlcs;
+            this.sellers = sellers;
         }
 
         [Authorize]
@@ -34,9 +37,11 @@
         [Authorize]
         public IActionResult Add(int id, DownloadableContentFormModel dlc)
         {
-            var userId = this.User.Id();
+            var sellerId = this.sellers.IdByUser(this.User.Id());
 
-            if (this.games.Details(id).UserId == userId && !User.IsAdmin())
+            var gameId = this.dlcs.GetGameId(id);
+
+            if (!this.games.OwnedBySeller(gameId, sellerId) && !User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -54,11 +59,13 @@
         [Authorize]
         public IActionResult Edit(int id)
         {
-            var userId = this.User.Id();
-
             var dlcData = this.dlcs.GetDlc(id);
+            
+            var sellerId = this.sellers.IdByUser(this.User.Id());
 
-            if (this.games.Details(dlcData.GameId).UserId == userId && !User.IsAdmin())
+            var gameId = this.dlcs.GetGameId(id);
+
+            if (!this.games.OwnedBySeller(gameId, sellerId) && !User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -77,14 +84,15 @@
         [HttpPost]
         public IActionResult Edit(int id, DownloadableContentFormModel dlc)
         {
-            var userId = this.User.Id();
+            var sellerId = this.sellers.IdByUser(this.User.Id());
 
             var gameId = this.dlcs.GetGameId(id);
 
-            if (this.games.Details(gameId).UserId == userId && !User.IsAdmin())
+            if (!this.games.OwnedBySeller(gameId, sellerId) && !User.IsAdmin())
             {
                 return Unauthorized();
             }
+
             this.dlcs.Edit(id,
                 dlc.Name,
                 dlc.Price,
@@ -92,24 +100,24 @@
                 dlc.ImageUrl,
                 dlc.Description);
 
-            return RedirectToAction("Details", "Games", new { id = gameId });
+            return RedirectToAction("All", "DownloadableContents", new { id = gameId });
         }
 
         [Authorize]
         public IActionResult Delete(int id)
         {
-            var userId = this.User.Id();
+            var sellerId = this.sellers.IdByUser(this.User.Id());
 
             var gameId = this.dlcs.GetGameId(id);
 
-            if (this.games.Details(gameId).UserId == userId && !User.IsAdmin())
+            if (!this.games.OwnedBySeller(gameId,sellerId) && !User.IsAdmin())
             {
                 return Unauthorized();
             }
 
             this.dlcs.Delete(id);
 
-            return RedirectToAction("Details", "Games", new { id = gameId });
+            return RedirectToAction("All", "DownloadableContents", new { id = gameId });
         }
     }
 }

@@ -7,6 +7,7 @@ namespace GameStore
     using GameStore.Services.Games;
     using GameStore.Services.Reviews;
     using GameStore.Services.Sellers;
+    using GameStore.Services.ShoppingCart;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
@@ -49,6 +50,7 @@ namespace GameStore
             services.AddTransient<ISellerService, SellerService>();
             services.AddTransient<IReviewService, ReviewService>();
             services.AddTransient<IDownloadableContentService, DownloadableContentService>();
+            services.AddTransient<IShoppingCartService, ShoppingCartService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

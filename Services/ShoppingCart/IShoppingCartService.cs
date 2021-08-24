@@ -1,11 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GameStore.Services.ShoppingCart
+﻿namespace GameStore.Services.ShoppingCart
 {
-    public class IShoppingCartService
+    using System.Collections.Generic;
+
+    public interface IShoppingCartService
     {
+        public IEnumerable<ShoppingCartItemServiceModel> GetUserShoppingCart(string userId);
+
+        public int AddGame(int id,string userId);
+
+        public int AddDlc(int id,string userId);
+
+        public bool Remove(int id);
+
+        public bool CheckOut(string userId);
     }
 }

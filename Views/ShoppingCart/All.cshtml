@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ShoppingCartItemServiceModel>
+
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+
+<body>
+    <main class="page">
+        <section class="shopping-cart dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2>Shopping Cart</h2>
+                </div>
+                <div class="content">
+                    <div class="row">
+
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-md-12 col-lg-8 shopping-item-margin">
+                                    <div class="items">
+                                        <div class="product">
+                                            <div class="row">
+                                                <div class="col-md-3 shopping-cart-size">
+                                                    <img class="img-fluid mx-auto d-block image shopping-cart-size" src="@item.ImageUrl">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="info">
+                                                        <div class="row">
+                                                            <div class="col-md-5 product-name">
+                                                                <div class="product-name">
+                                                                    <p>@item.Name</p>
+                                                                    <div class="product-info">
+                                                                        <div>Release Date: <span class="value">@item.ReleaseDate</span></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 price">
+                                                                <span>@item.Price$</span>
+                                                            </div>
+                                                            <div>
+                                                                <a asp-controller="ShoppingCart" asp-action="Remove" asp-route-id="@item.Id" class="btn btn-danger">Remove</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        @if(Model.Count() > 0)
+            {
+                    <div>
+                        <div class="summary">
+                            <h3>Total Price: @Model.Select(it => it.Price).Sum()$</h3>
+                            <a asp-controller="ShoppingCart" asp-action="CheckOut" asp-route-id="@this.User.Id()" class="btn btn-primary btn-lg btn-block">Check Out</a>
+                        </div>
+                    </div>
+            }
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+</body>

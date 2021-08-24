@@ -22,10 +22,14 @@
                  }
                 else
                  {
-                    <a asp-controller="ShoppingCart" asp-action="Add" asp-route-id="@dlc.Id" class="btn btn-success">Add to Cart</a>
+                    <a asp-controller="ShoppingCart" asp-action="AddDlc" asp-route-id="@dlc.Id" class="btn btn-success">Add to Cart</a>
                  }
             </div>
         </div>
          }
      }
+            else
+            {
+                <h2>There are no Dlcs available for this game</h2>
+            }
 </div>

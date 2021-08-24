@@ -89,8 +89,15 @@ using GameStore.Services.Reviews;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 12 "C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\Views\_ViewImports.cshtml"
+using GameStore.Services.ShoppingCart;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"edbc0ec684273e8bdf354e0d5302d07c6b034cb9", @"/Views/Games/_GamesPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5c0964be9e4de5800193ae8e63bdf449180f3a8e", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8f2066fee634286a2bcef9d7ed5b2e19847513c7", @"/Views/_ViewImports.cshtml")]
     public class Views_Games__GamesPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<GameServiceModel>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Games", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -189,7 +196,7 @@ WriteAttributeValue(" ", 259, game.ReleaseDate, 260, 17, false);
 #line hidden
 #nullable disable
             WriteLiteral("$</h5>\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "edbc0ec684273e8bdf354e0d5302d07c6b034cb911085", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "edbc0ec684273e8bdf354e0d5302d07c6b034cb911293", async() => {
                 WriteLiteral("View More");
             }
             );
@@ -232,7 +239,7 @@ WriteAttributeValue(" ", 259, game.ReleaseDate, 260, 17, false);
 #line hidden
 #nullable disable
             WriteLiteral("                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "edbc0ec684273e8bdf354e0d5302d07c6b034cb913899", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "edbc0ec684273e8bdf354e0d5302d07c6b034cb914107", async() => {
                 WriteLiteral("Edit");
             }
             );
@@ -266,7 +273,7 @@ WriteAttributeValue(" ", 259, game.ReleaseDate, 260, 17, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "edbc0ec684273e8bdf354e0d5302d07c6b034cb916405", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "edbc0ec684273e8bdf354e0d5302d07c6b034cb916613", async() => {
                 WriteLiteral("Delete");
             }
             );
@@ -301,7 +308,7 @@ WriteAttributeValue(" ", 259, game.ReleaseDate, 260, 17, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "edbc0ec684273e8bdf354e0d5302d07c6b034cb918998", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "edbc0ec684273e8bdf354e0d5302d07c6b034cb919206", async() => {
                 WriteLiteral("Add DLC");
             }
             );

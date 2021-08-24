@@ -21,6 +21,8 @@
 
         public DbSet<Review> Reviews { get; set; }
 
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder

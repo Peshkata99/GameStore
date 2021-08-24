@@ -18,6 +18,11 @@
         [Range(MinReleaseYear,MaxReleaseYear)]
         public int ReleaseDate { get; set; }
 
+        [Required]
+        [Url]
+        public string ImageUrl { get; set; }
+
+        [Required]
         public string UserId { get; set; }
 
         public User User { get; set; }

@@ -459,3 +459,4 @@ C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Ra
 C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml.g.cs
 C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml.g.cs
 C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Views\Reviews\All.cshtml.g.cs
+C:\Users\Petar\Desktop\Project\GameStore\GameStore\GameStore\obj\Debug\net5.0\Razor\Views\ShoppingCart\All.cshtml.g.cs
