@@ -97,7 +97,7 @@ using GameStore.Services.ShoppingCart;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0677274c15781e73eb9ff8acba4dcd77592b6b3c", @"/Views/DownloadableContents/Edit.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8f2066fee634286a2bcef9d7ed5b2e19847513c7", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7da3dc87d729748a39a058ba958a3ef6859a6493", @"/Views/_ViewImports.cshtml")]
     public class Views_DownloadableContents_Edit : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<DownloadableContentFormModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("name", "_DownloadableContentFormPartial", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);

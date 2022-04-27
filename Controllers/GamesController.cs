@@ -12,7 +12,7 @@
         private readonly IGameService games;
         private readonly ISellerService sellers;
 
-        public GamesController(IGameService games,ISellerService sellers)
+        public GamesController(IGameService games, ISellerService sellers)
         {
             this.games = games;
             this.sellers = sellers;
@@ -45,7 +45,7 @@
         }
 
         [Authorize]
-        public IActionResult Add() 
+        public IActionResult Add()
         {
             if (!this.sellers.IsSeller(this.User.Id()))
             {
@@ -131,7 +131,7 @@
 
             var game = this.games.Details(id);
 
-            if(game.UserId != userId && !User.IsAdmin())
+            if (game.UserId != userId && !User.IsAdmin())
             {
                 return Unauthorized();
             }
@@ -150,11 +150,11 @@
         }
         [HttpPost]
         [Authorize]
-        public IActionResult Edit(int id,GameFormModel game)
+        public IActionResult Edit(int id, GameFormModel game)
         {
             var sellerId = this.sellers.IdByUser(this.User.Id());
 
-            if(sellerId == 0 && !User.IsAdmin())
+            if (sellerId == 0 && !User.IsAdmin())
             {
                 return RedirectToAction(nameof(SellersController.Become), "Sellers");
             }

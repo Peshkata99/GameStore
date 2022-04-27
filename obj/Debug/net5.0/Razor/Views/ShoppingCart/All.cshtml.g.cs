@@ -97,7 +97,7 @@ using GameStore.Services.ShoppingCart;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9a89284123b16853c9614d5ea0144f627cfeed6e", @"/Views/ShoppingCart/All.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8f2066fee634286a2bcef9d7ed5b2e19847513c7", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7da3dc87d729748a39a058ba958a3ef6859a6493", @"/Views/_ViewImports.cshtml")]
     public class Views_ShoppingCart_All : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<ShoppingCartItemServiceModel>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "ShoppingCart", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
