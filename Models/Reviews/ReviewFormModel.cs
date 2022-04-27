@@ -8,9 +8,5 @@
         [Required]
         [StringLength(ContentMaxLength,MinimumLength = ContentMinLength)]
         public string Content { get; set; }
-
-        [Range(StarMinCount,StarMaxCount)]
-        [Display (Name = "Rating")]
-        public int StarCount { get; set; }
     }
 }

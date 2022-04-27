@@ -67,9 +67,11 @@
         {
             var userId = this.User.Id();
 
+            var reviewData = this.reviews.GetReview(id);
+
             var gameId = this.reviews.GetGameId(id);
 
-            if (this.games.Details(gameId).UserId != userId && !User.IsAdmin())
+            if (reviewData.UserId != userId && !User.IsAdmin())
             {
                 return Unauthorized();
             }
